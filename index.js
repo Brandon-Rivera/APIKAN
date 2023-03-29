@@ -30,8 +30,8 @@ app.get('/', async (req, res) => {
         pass: req.body.pass
     };*/
     const values = {
-        email: "A01424338@tec.mx",
-        pass: "Megaparty007"
+        email: "matricula@tec.mx",
+        pass: "contraseña"
     };
     const response = await fetch(`https://university6y.kanbanize.com/index.php/api/kanbanize/login//format/json`,
     {
