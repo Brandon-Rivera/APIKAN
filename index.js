@@ -1,12 +1,12 @@
 const fetch = require("node-fetch");
 const express = require('express');
-const bodyParser = require('body-parser');
+const cors = require('cors')
 
 const port = process.env.PORT || 3001;
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(cors());
+app.use(express.json());
 
 app.post('/login', async (req, res) => {
     console.log('body: ', req.body);
