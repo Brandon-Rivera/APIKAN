@@ -14,7 +14,8 @@ app.post('/login', async (req, res) => {
         email: req.body.email, 
         pass: req.body.pass
     };
-    const response = await fetch(`https://university6y.kanbanize.com/index.php/api/kanbanize/login//format/json`,
+    
+    const response = await fetch(`https://${req.body.domain}.kanbanize.com/index.php/api/kanbanize/login//format/json`,
     {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
