@@ -4,9 +4,22 @@ const cors = require('cors')
 
 const port = process.env.PORT || 3001;
 
+/*
+const login = require('./routes/login');
+const test = require('./routes/test');
+*/
+
 const app = express();
 app.use(cors());
 app.use(express.json());
+/*
+const jwt = require('jsonwebtoken');
+const config = require('./config/jwt');
+
+app.set("key", config.key);
+app.use('/login', login);
+app.use('/test', test);
+*/
 
 app.post('/login', async (req, res) => {
     console.log('body: ', req.body);
@@ -26,13 +39,9 @@ app.post('/login', async (req, res) => {
 })
 
 app.get('/', async (req, res) => {
-    /*const values = {
-        email: req.body.email, 
-        pass: req.body.pass
-    };*/
     const values = {
-        email: "matricula@tec.mx",
-        pass: "contraseña"
+        email: "a01424454@tec.mx",
+        pass: "123"
     };
     const response = await fetch(`https://university6y.kanbanize.com/index.php/api/kanbanize/login//format/json`,
     {
