@@ -9,6 +9,10 @@ module.exports.doLogin = async (req,res) =>
         email: req.body.email, 
         pass: req.body.pass
     };
+
+    if(req.body.domain == ''){
+        req.body.domain = 'test'
+    }
     
     const response = await fetch(`https://${req.body.domain}.kanbanize.com/index.php/api/kanbanize/login//format/json`,
     {
