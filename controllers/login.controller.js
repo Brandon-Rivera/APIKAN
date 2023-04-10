@@ -1,5 +1,4 @@
-//const jwt = require('jsonwebtoken');
-//const config = require('../config/jwt');
+
 
 
 module.exports.doLogin = async (req,res) =>
