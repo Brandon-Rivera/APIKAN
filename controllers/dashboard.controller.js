@@ -1,4 +1,6 @@
 const dataValidation = require('../helpers/dataValidation');
+const fetch = require("node-fetch");
+
 
 module.exports.getDashboard = async (req, res) => 
 {
@@ -6,9 +8,10 @@ module.exports.getDashboard = async (req, res) =>
     {
         method: 'GET',
         headers: {'apikey': req.body.apikey}
-    });
+    }); 
     const data = await response.json();
     res.json(data);
+    console.log('workspace', data)
 }
 
 module.exports.getUserWorkspaces = async (req, res) => 
@@ -35,6 +38,7 @@ module.exports.getBoards = async (req, res) =>
 
 module.exports.getBoardsNotArchived = async (req, res) => 
 {
+    console.log(req.body);
     const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/users/${req.body.userid}/boardRoles`,
     {
         method: 'GET',
