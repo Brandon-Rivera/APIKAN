@@ -5,10 +5,10 @@ const cors = require('cors')
 const port = process.env.PORT || 3001;
 
 
-const login = require('./routes/login');
+const login = require('./routes/functions/login');
 const test = require('./routes/test');
-const dashboard = require('./routes/dashboard');
-const board = require('./routes/board');
+const dashboard = require('./routes/display/dashboard');
+const board = require('./routes/display/board');
 
 const app = express();
 app.use(cors());

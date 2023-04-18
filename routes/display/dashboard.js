@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const dashboardController = require('../controllers/dashboard.controller');
+const dashboardController = require('../../controllers/dashboard.controller');
 
 router.post('/', dashboardController.getDashboard);
 router.post('/userWorkspaces', dashboardController.getUserWorkspaces);
