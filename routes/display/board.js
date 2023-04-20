@@ -6,5 +6,6 @@ router.post('/', boardController.getBoard);
 router.post('/settings', boardController.getStructure);
 router.post('/workflows', boardController.getWorkflows);
 router.post('/columns', boardController.getColumns);
+router.post('/cards', boardController.getCards);
 
 module.exports = router;

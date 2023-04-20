@@ -18,8 +18,15 @@ module.exports.getBoard = async (req, res) =>
     });
     const wf = await response1.json();
 
-    const data2 = dataValidation.buildResponse(col,wf);
-    res.json(data2);
+    const response2 = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/cards?board_ids=${req.body.boardid}&state=active&per_page=1000`,
+    {
+        method: 'GET',
+        headers: {'apikey': req.body.apikey}
+    });
+    const cd = await response2.json();
+
+    const data = dataValidation.buildResponse(col,wf,cd);
+    res.json(data);
 }
 
 module.exports.getStructure = async (req, res) => 
@@ -47,6 +54,17 @@ module.exports.getWorkflows = async (req, res) =>
 module.exports.getColumns = async (req, res) => 
 {
     const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/boards/${req.body.boardid}/columns`,
+    {
+        method: 'GET',
+        headers: {'apikey': req.body.apikey}
+    });
+    const data = await response.json();
+    res.json(data);
+}
+
+module.exports.getCards = async (req, res) => 
+{
+    const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/cards?board_ids=${req.body.boardid}&state=active&per_page=1000`,
     {
         method: 'GET',
         headers: {'apikey': req.body.apikey}
