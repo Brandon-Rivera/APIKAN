@@ -42,7 +42,6 @@ module.exports.buildResponse = (col,wf,cd) =>
     let columnsObj = [];
     let workflows = [];
     let cards = [];
-    let reverse = [];
     let cnt = 0;
     let id = -1;
     let card = {
@@ -63,6 +62,9 @@ module.exports.buildResponse = (col,wf,cd) =>
         name: "",
         type: 0,
         columns: []
+    };
+    let result = {
+        data: []
     };
     let data2 = []
 
@@ -237,7 +239,13 @@ module.exports.buildResponse = (col,wf,cd) =>
         }
     }
 
+    let dataCla = Object.create(result);
+    dataCla.data = [];
+    for (let i = 0; i < data2.length; i = i + 1)
+    {
+        dataCla.data.push(data2[i])
+    }
 
-    return data2;
+    return dataCla;
   }
   
