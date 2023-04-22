@@ -1,4 +1,4 @@
-const dataValidation = require('../helpers/dataValidation');
+const responseBuilder = require('../helpers/responseBuilder');
 const fetch = require("node-fetch");
 
 
@@ -11,7 +11,6 @@ module.exports.getDashboard = async (req, res) =>
     }); 
     const data = await response.json();
     res.json(data);
-    console.log('workspace', data)
 }
 
 module.exports.getUserWorkspaces = async (req, res) => 
@@ -53,7 +52,7 @@ module.exports.getBoardsNotArchived = async (req, res) =>
     });
     const data1 = await response1.json();
 
-    const data2 = dataValidation.compareID(data, data1);
+    const data2 = responseBuilder.compareID(data, data1);
     res.json(data2);
 }
 

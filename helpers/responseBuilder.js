@@ -14,8 +14,6 @@ module.exports.compareID = (data,data1) =>
                 }
             }
         })
-
-    //console.log(id);
     
     Object.entries(data).forEach(item => 
         {

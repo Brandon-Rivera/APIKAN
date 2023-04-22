@@ -3,7 +3,6 @@ const fetch = require("node-fetch");
 
 module.exports.doLogin = async (req,res) =>
 {
-    console.log('body: ', req.body);
     const values = {
         email: req.body.email, 
         pass: req.body.pass
