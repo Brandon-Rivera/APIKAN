@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
 
-const dataValidation = require('../helpers/dataValidation');
+const responseBuilder = require('../helpers/responseBuilder');
 
 module.exports.getBoard = async (req, res) => 
 {
@@ -25,7 +25,7 @@ module.exports.getBoard = async (req, res) =>
     });
     const cd = await response2.json();
 
-    const data = dataValidation.buildResponse(col,wf,cd);
+    const data = responseBuilder.buildResponse(col,wf,cd);
     res.json(data);
 }
 
