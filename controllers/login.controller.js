@@ -1,6 +1,9 @@
+//include libraries
 const fetch = require("node-fetch");
 
-
+//receives post request
+//redirects to post request
+//requires body with email, password and domain
 module.exports.doLogin = async (req,res) =>
 {
     const values = {
@@ -18,6 +21,8 @@ module.exports.doLogin = async (req,res) =>
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(values)
     });
+    //assigns request response
     const data = await response.json();
+    //returns response
     res.json(data);
 }

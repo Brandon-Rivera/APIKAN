@@ -1,21 +1,4 @@
-module.exports.insertionSort = (myArray) =>
-{ 
-    let size = myArray.length;
-    let temp = 0;
-    let place = 0;
-    for (let i =0; i < size; i++) 
-    { 
-        temp = myArray[obj]; 
-        for (place = obj - 1; place >= 0 && myArray[place] > temp; place--) 
-        { 
-            myArray[place + 1] = myArray[place]; 
-        } 
-        myArray[place + 1] = temp; 
-    }
-    return myArray;
-}
-
-
+//insertion sort for cards
 module.exports.insertionCardSort = (myArray) =>
 { 
     let size = myArray.length;
@@ -33,6 +16,7 @@ module.exports.insertionCardSort = (myArray) =>
     return myArray;
 }
 
+//insertion sort for columns by position
 module.exports.insertionColumnSort = (myArray) =>
 { 
     let size = myArray.length;
@@ -50,6 +34,7 @@ module.exports.insertionColumnSort = (myArray) =>
     return myArray;
 }
 
+//insertion sort for columns by section
 module.exports.insertionFinalColumnSort = (myArray) =>
 { 
     let size = myArray.length;
@@ -67,6 +52,7 @@ module.exports.insertionFinalColumnSort = (myArray) =>
     return myArray;
 }
 
+//insertion sort for workflows
 module.exports.insertionWorkflowsSort = (myArray) =>
 { 
     let size = myArray.length;

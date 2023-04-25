@@ -1,5 +1,8 @@
+//function receives body
+//assigns values to request body structure
 module.exports.createCard = (data) => 
 {
+    //creates request object
     let req = {
         "column_id": data.columnid,
         "lane_id": data.workflowid,
@@ -21,7 +24,6 @@ module.exports.createCard = (data) =>
         //"reference": "string"
     };
 
-    console.log(req);
-
+    //returns request
     return req;
 }
