@@ -1,5 +1,4 @@
 const fetch = require("node-fetch");
-
 const responseBuilder = require('../helpers/responseBuilder');
 
 module.exports.getBoard = async (req, res) => 
@@ -18,7 +17,7 @@ module.exports.getBoard = async (req, res) =>
     });
     const wf = await response1.json();
 
-    const response2 = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/cards?board_ids=${req.body.boardid}&state=active&per_page=1000`,
+    const response2 = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/cards?board_ids=${req.body.boardid}&state=active&per_page=1000&fields=card_id, title, description, owner_user_id, type_id, deadline, board_id, workflow_id, column_id, lane_id, section, position`,
     {
         method: 'GET',
         headers: {'apikey': req.body.apikey}
