@@ -61,6 +61,9 @@ module.exports.buildResponse = (col,wf,cd) =>
         pos: 0,
         columns: []
     };
+    let res = {
+        data: []
+    };
 
     let cards = [];
     let columns = [];
@@ -216,5 +219,13 @@ module.exports.buildResponse = (col,wf,cd) =>
 
     workflows = sorter.insertionWorkflowsSort(workflows);
 
-    return workflows;
+    let myResponse = Object.create(res);
+    myResponse.data = [];
+
+    for (let i = 0; i < workflows.length; i = i + 1)
+    {
+        myResponse.data.push(workflows[i]);
+    }
+
+    return myResponse;
 }
