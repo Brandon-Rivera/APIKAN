@@ -93,7 +93,19 @@ module.exports.buildResponse = (col,wf,cd) =>
                 temp.name = itemCd[1].data[i].title;
                 temp.pos = itemCd[1].data[i].position;
                 temp.column_id = itemCd[1].data[i].column_id;
-                temp.duedate = itemCd[1].data[i].deadline;
+                let date = "";
+                if (itemCd[1].data[i].deadline != null)
+                {
+                    for(let j = 0; j < 10; j++)
+                    {
+                        date += itemCd[1].data[i].deadline[j];
+                    }
+                    temp.duedate = date;
+                }
+                else
+                {
+                    temp.duedate = null;
+                }
                 //pushes created card to cards
                 cards.push(temp)
             }
