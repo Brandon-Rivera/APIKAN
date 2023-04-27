@@ -9,10 +9,10 @@ const port = process.env.PORT || 3001;
 
 //define routes to requests
 const login = require('./routes/functions/login');
-const test = require('./routes/test');
 const dashboard = require('./routes/display/dashboard');
 const board = require('./routes/display/board');
 const create = require('./routes/functions/create');
+const card = require('./routes/display/card');
 
 //define app to use cors and json
 const app = express();
@@ -21,10 +21,10 @@ app.use(express.json());
 
 //use routes for requests
 app.use('/login', login);
-app.use('/test', test);
 app.use('/dashboard', dashboard);
 app.use('/board', board);
 app.use('/create', create);
+app.use('/card', card);
 
 //log the selected port when server is up
 app.listen(port, () => {
