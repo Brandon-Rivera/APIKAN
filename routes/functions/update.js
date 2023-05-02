@@ -6,7 +6,7 @@ const router = express.Router();
 const updateController = require('../../controllers/update.controller');
 
 //relate functions to link routes
-//router.post('/', updateController.updateCard);
+router.post('/', updateController.updateCard);
 router.post('/move', updateController.moveCard);
 
 //export router requests

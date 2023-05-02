@@ -27,3 +27,18 @@ module.exports.setMove = (data) =>
     //returns request
     return req;
 }
+
+module.exports.confUpdate = (data) => 
+{
+    //creates request object
+    let req = {
+        "card_id": data.cardid,
+        "title": data.title,
+        "description": data.description,
+        "owner_user_id": data.ownerid,
+        "deadline": data.duedate
+    };
+
+    //returns request
+    return req;
+}
