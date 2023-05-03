@@ -22,7 +22,7 @@ module.exports.getOwners = async (req, res) =>
     const ownersArray = requestBuilder.createOwners(boardOwners);
 
     // request 2: GET (user details)
-    const response1 = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/users?user_ids=${ownersArray}&is_enabled=1&is_confirmed=1&if_assigned_where_i_am=0&fields=user_id, realname`,
+    const response1 = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/users?user_ids=${ownersArray}&is_enabled=1&is_confirmed=1&if_assigned_where_i_am=0&fields=user_id, realname, username, avatar`,
     {
         method: 'GET',
         headers: {'apikey': req.body.apikey}
