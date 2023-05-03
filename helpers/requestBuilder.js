@@ -42,3 +42,23 @@ module.exports.confUpdate = (data) =>
     //returns request
     return req;
 }
+
+// function receives user roles response
+// creates an array of user_id
+module.exports.createOwners = (listO) =>
+{
+    // definition of array
+    let req = [];
+
+    // pushes user_id from each object
+    Object.entries(listO).forEach(item =>
+        {
+            for (let i = 0; i < item[1].length; i++)
+            {
+                req.push(item[1][i].user_id)
+            }
+        })
+
+    // returns array
+    return req;
+}
