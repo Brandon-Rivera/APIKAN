@@ -251,6 +251,7 @@ module.exports.buildResponse = (col,wf,cd) =>
     while (kidcolumns.length > 0);
 
     //uses helpers/sorter/insertionFinalColumnSort to sort final parent columns
+    columns = sorter.insertionFinalColumnSortPlus(columns);
     columns = sorter.insertionFinalColumnSort(columns);
 
     //assigncolumns on workflows

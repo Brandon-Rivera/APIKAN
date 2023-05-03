@@ -35,6 +35,24 @@ module.exports.insertionColumnSort = (myArray) =>
 }
 
 //insertion sort for columns by section
+module.exports.insertionFinalColumnSortPlus = (myArray) =>
+{ 
+    let size = myArray.length;
+    let temp;
+    let place;
+    for (let i =0; i < size; i++) 
+    { 
+        temp = myArray[i]; 
+        for (place = i - 1; place >= 0 && myArray[place].pos > temp.pos; place--) 
+        { 
+            myArray[place + 1] = myArray[place]; 
+        } 
+        myArray[place + 1] = temp; 
+    }
+    return myArray;
+}
+
+//insertion sort for columns by section
 module.exports.insertionFinalColumnSort = (myArray) =>
 { 
     let size = myArray.length;
