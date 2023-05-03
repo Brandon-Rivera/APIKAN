@@ -14,6 +14,7 @@ const board = require('./routes/display/board');
 const create = require('./routes/functions/create');
 const card = require('./routes/display/card');
 const update = require('./routes/functions/update');
+const owners = require('./routes/display/owners');
 
 //define app to use cors and json
 const app = express();
@@ -27,6 +28,7 @@ app.use('/board', board);
 app.use('/create', create);
 app.use('/card', card);
 app.use('/update', update)
+app.use('/owners', owners);
 
 //log the selected port when server is up
 app.listen(port, () => {
