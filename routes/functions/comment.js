@@ -7,7 +7,7 @@ const commentController = require('../../controllers/comment.controller');
 
 //relate functions to link routes
 router.post('/', commentController.doComment);
-router.post('/move', commentController.getComment);
+router.post('/get', commentController.getComment);
 
 //export router requests
 module.exports = router;
