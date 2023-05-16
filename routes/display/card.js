@@ -7,6 +7,7 @@ const cardController = require('../../controllers/card.controller');
 
 //relate functions to link routes
 router.post('/', cardController.getCard);
+router.post('/subtasks', cardController.getSubtasks);
 
 //export router requests
 module.exports = router;

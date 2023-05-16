@@ -16,3 +16,19 @@ module.exports.getCard = async (req, res) =>
     //return response
     res.json(data);
 }
+
+//receives post request
+//redirects to get request
+//requires body with domain, apikey, card id
+module.exports.getSubtasks = async (req, res) => 
+{
+    const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}/subtasks`,
+    {
+        method: 'GET',
+        headers: {'apikey': req.body.apikey}
+    });
+    //assigns request response
+    const data = await response.json();
+    //return response
+    res.json(data);
+}
