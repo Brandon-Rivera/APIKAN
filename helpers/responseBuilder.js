@@ -48,7 +48,8 @@ module.exports.buildResponse = (col,wf,cd) =>
         pos: 0,
         column_id: 0,
         duedate: "",
-        owner_id: 0
+        owner_id: 0,
+        workflow_id: 0
     };
     let column = {
         id: 0,
@@ -95,6 +96,7 @@ module.exports.buildResponse = (col,wf,cd) =>
                 temp.pos = itemCd[1].data[i].position;
                 temp.column_id = itemCd[1].data[i].column_id;
                 temp.owner_id = itemCd[1].data[i].owner_user_id;
+                temp.workflow_id = itemCd[1].data[i].workflow_id;
                 let date = "";
                 if (itemCd[1].data[i].deadline != null)
                 {
