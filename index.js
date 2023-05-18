@@ -2,10 +2,14 @@
 const fetch = require("node-fetch");
 const express = require('express');
 const cors = require('cors')
+const jwt = require('jsonwebtoken');
 
 //define port for access
 //if not on cloud, default port set on 3001
 const port = process.env.PORT || 3001;
+
+//set config route
+const config = require('./config/jwt');
 
 //define routes to requests
 const login = require('./routes/functions/login');
@@ -21,6 +25,9 @@ const comment = require('./routes/functions/comment');
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+//set key for project
+app.set("key", config.key);
 
 //use routes for requests
 app.use('/login', login);

@@ -4,13 +4,15 @@ const express = require('express');
 const router = express.Router();
 //define route
 const boardController = require('../../controllers/board.controller');
+//define route for middleware
+const middleware = require('../../middleware/jwt-middleware.js');
 
 //relate functions to link routes
-router.post('/', boardController.getBoard);
-router.post('/settings', boardController.getStructure);
-router.post('/workflows', boardController.getWorkflows);
-router.post('/columns', boardController.getColumns);
-router.post('/cards', boardController.getCards);
+router.post('/', middleware, boardController.getBoard);
+router.post('/settings', middleware, boardController.getStructure);
+router.post('/workflows', middleware, boardController.getWorkflows);
+router.post('/columns', middleware, boardController.getColumns);
+router.post('/cards', middleware, boardController.getCards);
 
 //export router requests
 module.exports = router;

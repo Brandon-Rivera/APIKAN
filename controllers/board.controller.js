@@ -5,33 +5,34 @@ const responseBuilder = require('../helpers/responseBuilder');
 
 //receives post request
 //redirects to triple get requests
-//requires body with domain, apikey and boardid
+//requires body with boardid
+//requires header with supra-access-token
 //uses helpers/responsebuilder/buildResponse
 module.exports.getBoard = async (req, res) => 
 {
     //request 1: get
-    const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/boards/${req.body.boardid}/columns`,
+    const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/boards/${req.body.boardid}/columns`,
     {
         method: 'GET',
-        headers: {'apikey': req.body.apikey}
+        headers: {'apikey': req.apikey}
     });
     //assigns request response
     const col = await response.json();
 
     //request 2: get
-    const response1 = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/boards/${req.body.boardid}/workflows`,
+    const response1 = await fetch(`https://${req.domain}.kanbanize.com/api/v2/boards/${req.body.boardid}/workflows`,
     {
         method: 'GET',
-        headers: {'apikey': req.body.apikey}
+        headers: {'apikey': req.apikey}
     });
     //assigns request response
     const wf = await response1.json();
 
     //request 3: get
-    const response2 = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/cards?board_ids=${req.body.boardid}&state=active&per_page=1000&fields=card_id, title, description, owner_user_id, type_id, deadline, board_id, workflow_id, column_id, lane_id, section, position`,
+    const response2 = await fetch(`https://${req.domain}.kanbanize.com/api/v2/cards?board_ids=${req.body.boardid}&state=active&per_page=1000&fields=card_id, title, description, owner_user_id, type_id, deadline, board_id, workflow_id, column_id, lane_id, section, position`,
     {
         method: 'GET',
-        headers: {'apikey': req.body.apikey}
+        headers: {'apikey': req.apikey}
     });
     //assigns request response
     const cd = await response2.json();
@@ -44,13 +45,14 @@ module.exports.getBoard = async (req, res) =>
 
 //receives post request
 //redirects to get request
-//requires body with domain, apikey and boardid
+//requires body with boardid
+//requires header with supra-access-token
 module.exports.getStructure = async (req, res) => 
 {
-    const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/boards/${req.body.boardid}/currentStructure`,
+    const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/boards/${req.body.boardid}/currentStructure`,
     {
         method: 'GET',
-        headers: {'apikey': req.body.apikey}
+        headers: {'apikey': req.apikey}
     });
     //assigns request response
     const data = await response.json();
@@ -60,13 +62,14 @@ module.exports.getStructure = async (req, res) =>
 
 //receives post request
 //redirects to get request
-//requires body with domain, apikey and boardid
+//requires body with boardid
+//requires header with supra-access-token
 module.exports.getWorkflows = async (req, res) => 
 {
-    const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/boards/${req.body.boardid}/workflows`,
+    const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/boards/${req.body.boardid}/workflows`,
     {
         method: 'GET',
-        headers: {'apikey': req.body.apikey}
+        headers: {'apikey': req.apikey}
     });
     //assigns request response
     const data = await response.json();
@@ -76,13 +79,14 @@ module.exports.getWorkflows = async (req, res) =>
 
 //receives post request
 //redirects to get request
-//requires body with domain, apikey and boardid
+//requires body with boardid
+//requires header with supra-access-token
 module.exports.getColumns = async (req, res) => 
 {
-    const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/boards/${req.body.boardid}/columns`,
+    const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/boards/${req.body.boardid}/columns`,
     {
         method: 'GET',
-        headers: {'apikey': req.body.apikey}
+        headers: {'apikey': req.apikey}
     });
     //assigns request response
     const data = await response.json();
@@ -92,13 +96,14 @@ module.exports.getColumns = async (req, res) =>
 
 //receives post request
 //redirects to get request
-//requires body with domain, apikey and boardid
+//requires body with boardid
+//requires header with supra-access-token
 module.exports.getCards = async (req, res) => 
 {
-    const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/cards?board_ids=${req.body.boardid}&state=active&per_page=1000`,
+    const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/cards?board_ids=${req.body.boardid}&state=active&per_page=1000`,
     {
         method: 'GET',
-        headers: {'apikey': req.body.apikey}
+        headers: {'apikey': req.apikey}
     });
     //assigns request response
     const data = await response.json();

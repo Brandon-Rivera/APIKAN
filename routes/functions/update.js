@@ -4,10 +4,12 @@ const express = require('express');
 const router = express.Router();
 //define route
 const updateController = require('../../controllers/update.controller');
+//define route for middleware
+const middleware = require('../../middleware/jwt-middleware.js');
 
 //relate functions to link routes
-router.post('/', updateController.updateCard);
-router.post('/move', updateController.moveCard);
+router.post('/', middleware, updateController.updateCard);
+router.post('/move', middleware, updateController.moveCard);
 
 //export router requests
 module.exports = router;

@@ -3,13 +3,14 @@ const fetch = require("node-fetch");
 
 //receives post request
 //redirects to get request
-//requires body with domain, apikey, cardid
+//requires body with cardid
+//requires header with supra-access-token
 module.exports.getCard = async (req, res) => 
 {
-    const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}`,
+    const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}`,
     {
         method: 'GET',
-        headers: {'apikey': req.body.apikey}
+        headers: {'apikey': req.apikey}
     });
     //assigns request response
     const data = await response.json();
@@ -19,13 +20,14 @@ module.exports.getCard = async (req, res) =>
 
 //receives post request
 //redirects to get request
-//requires body with domain, apikey, cardid
+//requires body with cardid
+//requires header with supra-access-token
 module.exports.getSubtasks = async (req, res) => 
 {
-    const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}/subtasks`,
+    const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}/subtasks`,
     {
         method: 'GET',
-        headers: {'apikey': req.body.apikey}
+        headers: {'apikey': req.apikey}
     });
     //assigns request response
     const data = await response.json();

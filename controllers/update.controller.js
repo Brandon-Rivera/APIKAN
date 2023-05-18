@@ -5,17 +5,17 @@ const requestBuilder = require('../helpers/requestBuilder');
 
 //receives post request
 //redirects to patch request
-//requires body with domain, apikey, cardid
-//title, description, ownerid and deadline
+//requires body with cardid, title, description, ownerid and deadline
+//requires header with supra-access-token
 //uses helpers/requestBuilder/confUpdate
 module.exports.updateCard = async (req, res) => 
 {
     //calls helpers/requestBuilder/confUpdate
     values = requestBuilder.confUpdate(req.body);
-    const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}`,
+    const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}`,
     {
         method: 'PATCH',
-        headers: {'apikey': req.body.apikey, 
+        headers: {'apikey': req.apikey, 
         'Content-Type': 'application/json'},
         body: JSON.stringify(values)
     });
@@ -27,16 +27,17 @@ module.exports.updateCard = async (req, res) =>
 
 //receives post request
 //redirects to patch request
-//requires body with domain, apikey, cardid, columnid and workflowid
+//requires body with cardid, columnid and workflowid
+//requires header with supra-access-token
 //uses helpers/requestBuilder/setMove
 module.exports.moveCard = async (req, res) => 
 {
     //calls helpers/requestBuilder/setMove
     values = requestBuilder.setMove(req.body);
-    const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}`,
+    const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}`,
     {
         method: 'PATCH',
-        headers: {'apikey': req.body.apikey, 
+        headers: {'apikey': req.apikey, 
         'Content-Type': 'application/json'},
         body: JSON.stringify(values)
     });

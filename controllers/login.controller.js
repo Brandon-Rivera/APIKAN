@@ -1,5 +1,7 @@
 //include libraries
 const fetch = require("node-fetch");
+//helper routes
+const tokenBuilder = require('../helpers/tokenBuilder');
 
 //receives post request
 //redirects to post request
@@ -23,6 +25,8 @@ module.exports.doLogin = async (req,res) =>
     });
     //assigns request response
     const data = await response.json();
+    //calls helpers/tokenBuilder/buildToken
+    const data1 = tokenBuilder.buildToken(data);
     //returns response
-    res.json(data);
+    res.json(data1);
 }
