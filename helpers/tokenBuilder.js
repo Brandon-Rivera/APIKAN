@@ -11,7 +11,7 @@ module.exports.buildToken = (data) =>
             id: data.userid
         }
         let token = jwt.sign(payload, config.key, {expiresIn: 7200})
-        //delete data.apikey; delete data.companyname;
+        delete data.apikey; delete data.companyname;
         data.token = token;
     }
     return data;
