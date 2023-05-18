@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 
 //receives post request
 //redirects to post request
-//requires body with email, password and domain
+//requires body with email, pass and domain
 module.exports.doLogin = async (req,res) =>
 {
     const values = {

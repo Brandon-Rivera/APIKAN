@@ -5,7 +5,7 @@ const requestBuilder = require('../helpers/requestBuilder');
 
 // receives post request
 // redirects to double GET requests
-// requieres body with domain, apikey and board id
+// requieres body with domain, apikey and boardid
 // uses helpers/requestBuilder/createOwners
 module.exports.getOwners = async (req, res) =>
 {

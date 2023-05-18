@@ -5,8 +5,8 @@ const requestBuilder = require('../helpers/requestBuilder');
 
 //receives post request
 //redirects to post request
-//requires body with domain, apikey, column id, lane id, title,
-//description, owner user id and deadline
+//requires body with domain, apikey, columnid, workflowid, title,
+//description, ownerid and duedate
 //uses helpers/requestBuilder/createCard
 module.exports.postCard = async (req, res) => 
 {

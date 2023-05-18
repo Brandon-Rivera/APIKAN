@@ -5,7 +5,7 @@ const responseBuilder = require('../helpers/responseBuilder');
 
 //receives post request
 //redirects to triple get requests
-//requires body with domain, apikey and board id
+//requires body with domain, apikey and boardid
 //uses helpers/responsebuilder/buildResponse
 module.exports.getBoard = async (req, res) => 
 {
@@ -44,7 +44,7 @@ module.exports.getBoard = async (req, res) =>
 
 //receives post request
 //redirects to get request
-//requires body with domain, apikey and board id
+//requires body with domain, apikey and boardid
 module.exports.getStructure = async (req, res) => 
 {
     const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/boards/${req.body.boardid}/currentStructure`,
@@ -60,7 +60,7 @@ module.exports.getStructure = async (req, res) =>
 
 //receives post request
 //redirects to get request
-//requires body with domain, apikey and board id
+//requires body with domain, apikey and boardid
 module.exports.getWorkflows = async (req, res) => 
 {
     const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/boards/${req.body.boardid}/workflows`,
@@ -76,7 +76,7 @@ module.exports.getWorkflows = async (req, res) =>
 
 //receives post request
 //redirects to get request
-//requires body with domain, apikey and board id
+//requires body with domain, apikey and boardid
 module.exports.getColumns = async (req, res) => 
 {
     const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/boards/${req.body.boardid}/columns`,
@@ -92,7 +92,7 @@ module.exports.getColumns = async (req, res) =>
 
 //receives post request
 //redirects to get request
-//requires body with domain, apikey and board id
+//requires body with domain, apikey and boardid
 module.exports.getCards = async (req, res) => 
 {
     const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/cards?board_ids=${req.body.boardid}&state=active&per_page=1000`,

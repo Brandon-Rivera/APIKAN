@@ -5,7 +5,7 @@ const requestBuilder = require('../helpers/requestBuilder');
 
 //receives post request
 //redirects to post request
-//requires body with domain, apikey, card id and comment
+//requires body with domain, apikey, cardid and comment
 module.exports.doComment = async (req, res) => 
 {
     const values = {
@@ -26,7 +26,7 @@ module.exports.doComment = async (req, res) =>
 
 //receives post request
 //redirects to get request
-//requires body with domain, apikey and card id
+//requires body with domain, apikey and cardid
 module.exports.getComment = async (req, res) => 
 {
     const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}/comments`,

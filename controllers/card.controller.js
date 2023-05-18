@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 
 //receives post request
 //redirects to get request
-//requires body with domain, apikey, card id
+//requires body with domain, apikey, cardid
 module.exports.getCard = async (req, res) => 
 {
     const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}`,
@@ -19,7 +19,7 @@ module.exports.getCard = async (req, res) =>
 
 //receives post request
 //redirects to get request
-//requires body with domain, apikey, card id
+//requires body with domain, apikey, cardid
 module.exports.getSubtasks = async (req, res) => 
 {
     const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}/subtasks`,

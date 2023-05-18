@@ -5,8 +5,8 @@ const requestBuilder = require('../helpers/requestBuilder');
 
 //receives post request
 //redirects to patch request
-//requires body with domain, apikey, card id, column id, lane id,
-//title, description, owner user id and deadline, lane id
+//requires body with domain, apikey, cardid
+//title, description, ownerid and deadline
 //uses helpers/requestBuilder/confUpdate
 module.exports.updateCard = async (req, res) => 
 {
@@ -27,7 +27,7 @@ module.exports.updateCard = async (req, res) =>
 
 //receives post request
 //redirects to patch request
-//requires body with domain, apikey, card id, column id and lane id
+//requires body with domain, apikey, cardid, columnid and workflowid
 //uses helpers/requestBuilder/setMove
 module.exports.moveCard = async (req, res) => 
 {

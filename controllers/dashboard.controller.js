@@ -21,7 +21,7 @@ module.exports.getDashboard = async (req, res) =>
 
 //receives post request
 //redirects to get request
-//requires body with user id, domain and apikey
+//requires body with userid, domain and apikey
 module.exports.getUserWorkspaces = async (req, res) => 
 {
     const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/users/${req.body.userid}/managedWorkspaces`,
@@ -37,7 +37,7 @@ module.exports.getUserWorkspaces = async (req, res) =>
 
 //receives post request
 //redirects to get request
-//requires body with user id, domain and apikey
+//requires body with userid, domain and apikey
 module.exports.getBoards = async (req, res) => 
 {
     const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/users/${req.body.userid}/boardRoles`,
@@ -53,7 +53,7 @@ module.exports.getBoards = async (req, res) =>
 
 //receives post request
 //redirects to double get requests
-//requires body with user id, domain and apikey
+//requires body with userid, domain and apikey
 //uses helpers/responsebuilder/compareID
 module.exports.getBoardsNotArchived = async (req, res) => 
 {
@@ -83,7 +83,7 @@ module.exports.getBoardsNotArchived = async (req, res) =>
 
 //receives post request
 //redirects to get request
-//requires body with user id, domain and apikey
+//requires body with userid, domain and apikey
 module.exports.getWorkspaceInfo = async (req, res) => 
 {
     const response = await fetch(`https://${req.body.domain}.kanbanize.com/api/v2/workspaces/${req.body.workspaceid}`,
