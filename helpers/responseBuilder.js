@@ -45,6 +45,7 @@ module.exports.buildResponse = (col,wf,cd) =>
     let card = {
         id: 0,
         name: "",
+        description: "",
         pos: 0,
         column_id: 0,
         duedate: "",
@@ -93,6 +94,7 @@ module.exports.buildResponse = (col,wf,cd) =>
                 temp = Object.create(card);
                 temp.id = itemCd[1].data[i].card_id;
                 temp.name = itemCd[1].data[i].title;
+                temp.description = itemCd[1].data[i].description;
                 temp.pos = itemCd[1].data[i].position;
                 temp.column_id = itemCd[1].data[i].column_id;
                 temp.owner_id = itemCd[1].data[i].owner_user_id;
