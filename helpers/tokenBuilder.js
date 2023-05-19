@@ -8,7 +8,6 @@ module.exports.buildToken = (data) =>
     if(data.apikey)
     {
         let eApikey = sjcl.encrypt(password, data.apikey);
-        console.log(eApikey);
         const payload = {
             apikey: eApikey,
             domain: data.companyname,
