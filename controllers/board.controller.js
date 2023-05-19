@@ -10,7 +10,7 @@ const responseBuilder = require('../helpers/responseBuilder');
 //uses helpers/responsebuilder/buildResponse
 module.exports.getBoard = async (req, res) => 
 {
-    //request 1: get
+    //request 1: get columns
     const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/boards/${req.body.boardid}/columns`,
     {
         method: 'GET',
@@ -19,7 +19,7 @@ module.exports.getBoard = async (req, res) =>
     //assigns request response
     const col = await response.json();
 
-    //request 2: get
+    //request 2: get workflows
     const response1 = await fetch(`https://${req.domain}.kanbanize.com/api/v2/boards/${req.body.boardid}/workflows`,
     {
         method: 'GET',
@@ -28,7 +28,7 @@ module.exports.getBoard = async (req, res) =>
     //assigns request response
     const wf = await response1.json();
 
-    //request 3: get
+    //request 3: get cards
     const response2 = await fetch(`https://${req.domain}.kanbanize.com/api/v2/cards?board_ids=${req.body.boardid}&state=active&per_page=1000&fields=card_id, title, description, owner_user_id, type_id, deadline, board_id, workflow_id, column_id, lane_id, section, position`,
     {
         method: 'GET',

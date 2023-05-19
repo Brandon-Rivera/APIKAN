@@ -3,6 +3,7 @@ const fetch = require("node-fetch");
 const express = require('express');
 const cors = require('cors')
 const jwt = require('jsonwebtoken');
+const sjcl = require('sjcl');
 
 //define port for access
 //if not on cloud, default port set on 3001

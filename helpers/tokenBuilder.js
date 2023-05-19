@@ -1,12 +1,16 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config/jwt');
+const sjcl = require('sjcl');
+const {password} = require('../config/sjcl');
 
 module.exports.buildToken = (data) =>
 {
     if(data.apikey)
     {
+        let eApikey = sjcl.encrypt(password, data.apikey);
+        console.log(eApikey);
         const payload = {
-            apikey: data.apikey,
+            apikey: eApikey,
             domain: data.companyname,
             id: data.userid
         }

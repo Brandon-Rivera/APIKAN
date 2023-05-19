@@ -1,5 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const sjcl = require('sjcl');
+const {password} = require('../config/sjcl');
 const middleware = express.Router();
 const {key} = require('../config/jwt');
 
@@ -11,11 +13,10 @@ middleware.use((req, res, next) => {
                 return res.status(403).json({mensaje: 'Token inválido'})
             else
             {
-                req.apikey = decoded.apikey;
+                let myapikey = sjcl.decrypt(password, decoded.apikey);
+                req.apikey = myapikey;
                 req.domain = decoded.domain;
                 next();
-                //Si es necesario, se pueden establecer valores a req
-                //Para enviar información al path solicitado
             }
         })
     }else{
