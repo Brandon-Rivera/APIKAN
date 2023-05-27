@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const config = require('../config/jwt');
+const {key} = require('../config/jwt');
 const sjcl = require('sjcl');
 const {password} = require('../config/sjcl');
 
@@ -13,7 +13,7 @@ module.exports.buildToken = (data) =>
             domain: data.companyname,
             id: data.userid
         }
-        let token = jwt.sign(payload, config.key, {expiresIn: 7200})
+        let token = jwt.sign(payload, key, {expiresIn: 7200})
         delete data.apikey; delete data.companyname;
         data.token = token;
     }
