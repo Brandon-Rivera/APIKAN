@@ -1,5 +1,5 @@
 
-//Llave para jwt
+//jwt key for encryption
 module.exports ={
     key: '!!VacaKanban23$'
-}
+};
