@@ -19,17 +19,17 @@ module.exports.uploadImage = async (req, res) =>
     const storage = getStorage(fireApp);
 
     if (!req.files || Object.keys(req.files).length === 0) {
-        return res.status(400).send("No se enviaron archivos");
+        return res.status(400).json("No se enviaron archivos");
     }
     
     try {
         const storageRef = ref(storage, req.body.cardid + "/" + String(Math.random()*100000000000000000) + req.files.toUpload.name);
         await uploadBytes(storageRef, req.files.toUpload.data);
         const downloadURL = await getDownloadURL(storageRef);
-        res.status(200).send(downloadURL);
+        res.status(200).json(downloadURL);
     }
     catch(error){
-        res.status(400).send('Error uploading file:' + error);  
+        res.status(400).json('Error uploading file:' + error);  
     }
 }
 
