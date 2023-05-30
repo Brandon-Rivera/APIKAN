@@ -5,7 +5,7 @@ const requestBuilder = require('../helpers/requestBuilder');
 
 //receives post request
 //redirects to post request
-//requires body with columnid, workflowid, title, description, ownerid and duedate
+//requires body with columnid, workflowid, laneid, title, description, ownerid and duedate
 //requires header with supra-access-token
 //uses helpers/requestBuilder/createCard
 module.exports.postCard = async (req, res) => 

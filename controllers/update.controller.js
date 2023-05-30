@@ -27,7 +27,7 @@ module.exports.updateCard = async (req, res) =>
 
 //receives post request
 //redirects to patch request
-//requires body with cardid, columnid and workflowid
+//requires body with cardid, columnid, laneid and workflowid
 //requires header with supra-access-token
 //uses helpers/requestBuilder/setMove
 module.exports.moveCard = async (req, res) => 

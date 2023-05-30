@@ -97,6 +97,7 @@ module.exports.buildResponse = (col,wf,cd) =>
                 temp.description = itemCd[1].data[i].description;
                 temp.pos = itemCd[1].data[i].position;
                 temp.column_id = itemCd[1].data[i].column_id;
+                temp.lane_id = itemCd[1].data[i].lane_id;
                 temp.owner_id = itemCd[1].data[i].owner_user_id;
                 temp.workflow_id = itemCd[1].data[i].workflow_id;
                 let date = "";

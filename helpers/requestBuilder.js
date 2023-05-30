@@ -5,7 +5,8 @@ module.exports.createCard = (data) =>
     //creates request object
     let req = {
         "column_id": data.columnid,
-        "lane_id": data.workflowid,
+        "lane_id": data.laneid,
+        "workflow_id": data.workflowid,
         "title": data.title,
         "description": data.description,
         "owner_user_id": data.ownerid,
@@ -21,7 +22,8 @@ module.exports.setMove = (data) =>
     //creates request object
     let req = {
         "column_id": data.columnid,
-        "lane_id": data.workflowid
+        "lane_id": data.laneid,
+        "workflow_id": data.workflowid
     };
 
     //returns request
