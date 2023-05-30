@@ -30,6 +30,17 @@ module.exports.setMove = (data) =>
     return req;
 }
 
+module.exports.setNext = (data) => 
+{
+    //creates request object
+    let req = {
+        "column_id": data.columnid
+    };
+
+    //returns request
+    return req;
+}
+
 module.exports.confUpdate = (data) => 
 {
     //creates request object

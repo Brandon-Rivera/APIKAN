@@ -46,3 +46,24 @@ module.exports.moveCard = async (req, res) =>
     //return response
     res.json(data);
 }
+
+//redirects to patch request
+//requires body with cardid and columnid
+//requires header with supra-access-token
+//uses helpers/requestBuilder/setNext
+module.exports.nextColumn = async (req, res) => 
+{
+    //calls helpers/requestBuilder/setNext
+    values = requestBuilder.setNext(req.body);
+    const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}`,
+    {
+        method: 'PATCH',
+        headers: {'apikey': req.apikey, 
+        'Content-Type': 'application/json'},
+        body: JSON.stringify(values)
+    });
+    //assigns request response
+    const data = await response.json();
+    //return response
+    res.json(data);
+}

@@ -13,6 +13,7 @@ router.post('/settings', middleware, boardController.getStructure);
 router.post('/workflows', middleware, boardController.getWorkflows);
 router.post('/columns', middleware, boardController.getColumns);
 router.post('/cards', middleware, boardController.getCards);
+router.post('/lines', middleware, boardController.getLines);
 
 //export router requests
 module.exports = router;
