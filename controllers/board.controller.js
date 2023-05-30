@@ -37,8 +37,17 @@ module.exports.getBoard = async (req, res) =>
     //assigns request response
     const cd = await response2.json();
 
+    //request 3: get lanes
+    const response3 = await fetch(`https://${req.domain}.kanbanize.com/api/v2/boards/${req.body.boardid}/lanes`,
+    {
+        method: 'GET',
+        headers: {'apikey': req.apikey}
+    });
+    //assigns request response
+    const ln = await response3.json();
+
     //calls helpers/responsebuilder/buildResponse
-    const data = responseBuilder.buildResponse(col,wf,cd);
+    const data = responseBuilder.buildResponse(col,wf,cd,ln);
     //return response
     res.json(data);
 }

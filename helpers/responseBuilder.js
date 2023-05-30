@@ -39,7 +39,7 @@ module.exports.compareID = (data,data1) =>
 }
 
 //function to reestructure workflows, columns and cards
-module.exports.buildResponse = (col,wf,cd) => 
+module.exports.buildResponse = (col,wf,cd,ln) => 
 {
     //define objects
     let card = {
@@ -67,8 +67,17 @@ module.exports.buildResponse = (col,wf,cd) =>
         name: "",
         type: 0,
         pos: 0,
+        lanes: [],
         columns: []
     };
+    let lane = {
+        id: 0,
+        workflow_id: 0,
+        parent_lane_id: 0,
+        position: 0,
+        name: "",
+        description: ""
+    }
     let res = {
         data: []
     };
@@ -77,6 +86,7 @@ module.exports.buildResponse = (col,wf,cd) =>
     let cards = [];
     let columns = [];
     let workflows = [];
+    let lanes = [];
 
     //define secondary arrays
     let parentcolumns = [];
@@ -149,9 +159,27 @@ module.exports.buildResponse = (col,wf,cd) =>
                 temp.name = itemW[1][i].name;
                 temp.type = itemW[1][i].type;
                 temp.pos = itemW[1][i].position;
+                temp.lanes = [];
                 temp.columns = [];
                 //pushes workflow to workflows
                 workflows.push(temp)
+            }
+        })
+
+        Object.entries(ln).forEach((itemLn) => 
+        {
+            for (let i = 0; i < itemLn[1].length; i++)
+            {
+                //creates object lane and assigns attributes
+                temp = Object.create(lane);
+                temp.id = itemLn[1][i].lane_id;
+                temp.workflow_id = itemLn[1][i].workflow_id;
+                temp.parent_lane_id = itemLn[1][i].parent_lane_id;
+                temp.position = itemLn[1][i].position;
+                temp.name = itemLn[1][i].name;
+                temp.description = itemLn[1][i].description;
+                //pushes lane to lanes
+                lanes.push(temp)
             }
         })
     
@@ -261,7 +289,19 @@ module.exports.buildResponse = (col,wf,cd) =>
     columns = sorter.insertionFinalColumnSortPlus(columns);
     columns = sorter.insertionFinalColumnSort(columns);
 
-    //assigncolumns on workflows
+    //assign lanes on workflows
+    for (let i = 0; i < lanes.length; i = i + 1)
+    {
+        for (let j = 0; j < workflows.length; j = j + 1)
+        {
+            if (lanes[i].workflow_id == workflows[j].id)
+            {
+                workflows[j].lanes.push(lanes[i]);
+            }
+        }
+    }
+
+    //assign columns on workflows
     for (let i = 0; i < columns.length; i = i + 1)
     {
         for (let j = 0; j < workflows.length; j = j + 1)
