@@ -166,7 +166,7 @@ module.exports.buildResponse = (col,wf,cd,ln) =>
             }
         })
 
-        Object.entries(ln).forEach((itemLn) => 
+    Object.entries(ln).forEach((itemLn) => 
         {
             for (let i = 0; i < itemLn[1].length; i++)
             {
@@ -286,7 +286,7 @@ module.exports.buildResponse = (col,wf,cd,ln) =>
     while (kidcolumns.length > 0);
 
     //uses helpers/sorter/insertionSortPos to sort lanes
-    columns = sorter.insertionSortPos(lanes);
+    lanes = sorter.insertionSortPos(lanes);
 
     //assign lanes on workflows
     for (let i = 0; i < lanes.length; i = i + 1)

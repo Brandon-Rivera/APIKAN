@@ -36,7 +36,26 @@ module.exports.getBoard = async (req, res) =>
             headers: {'apikey': req.apikey}
         });
         //assigns request response
-        const cd = await response2.json();
+        let cd = await response2.json();
+
+        //checks if there are more pages to cards
+        if(cd.data.pagination.all_pages > 1)
+        {
+            for(let i = 1; i < cd.data.pagination.all_pages; i++)
+            {
+                //optional request: get cards other pages
+                const responseTemp = await fetch(`https://${req.domain}.kanbanize.com/api/v2/cards?board_ids=${req.body.boardid}&state=active&page=${i+1}&per_page=1000&fields=card_id, title, description, owner_user_id, type_id, deadline, board_id, workflow_id, column_id, lane_id, section, position`,
+                {
+                    method: 'GET',
+                    headers: {'apikey': req.apikey}
+                });
+                //assigns request response
+                const cdTemp = await responseTemp.json();
+
+                for(let j = 0; j < cdTemp.data.data.length; j++)
+                    cd.data.data.push(cdTemp.data.data[j]);
+            }
+        }
 
         //request 4: get lanes
         const response3 = await fetch(`https://${req.domain}.kanbanize.com/api/v2/boards/${req.body.boardid}/lanes`,
