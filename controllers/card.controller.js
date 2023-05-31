@@ -7,15 +7,20 @@ const fetch = require("node-fetch");
 //requires header with supra-access-token
 module.exports.getCard = async (req, res) => 
 {
-    const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}`,
-    {
-        method: 'GET',
-        headers: {'apikey': req.apikey}
-    });
-    //assigns request response
-    const data = await response.json();
-    //return response
-    res.json(data);
+    try {
+        const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}`,
+        {
+            method: 'GET',
+            headers: {'apikey': req.apikey}
+        });
+        //assigns request response
+        const data = await response.json();
+        //return response
+        res.json(data);
+    }
+    catch(error) {
+        res.status(400).json('Error getting card:' + error);  
+    }
 }
 
 //receives post request
@@ -24,13 +29,18 @@ module.exports.getCard = async (req, res) =>
 //requires header with supra-access-token
 module.exports.getSubtasks = async (req, res) => 
 {
-    const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}/subtasks`,
-    {
-        method: 'GET',
-        headers: {'apikey': req.apikey}
-    });
-    //assigns request response
-    const data = await response.json();
-    //return response
-    res.json(data);
+    try {
+        const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}/subtasks`,
+        {
+            method: 'GET',
+            headers: {'apikey': req.apikey}
+        });
+        //assigns request response
+        const data = await response.json();
+        //return response
+        res.json(data);
+    }
+    catch(error) {
+        res.status(400).json('Error getting subtasks:' + error);  
+    }
 }

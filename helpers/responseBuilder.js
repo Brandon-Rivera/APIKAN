@@ -74,7 +74,7 @@ module.exports.buildResponse = (col,wf,cd,ln) =>
         id: 0,
         workflow_id: 0,
         parent_lane_id: 0,
-        position: 0,
+        pos: 0,
         name: "",
         description: ""
     }
@@ -175,7 +175,7 @@ module.exports.buildResponse = (col,wf,cd,ln) =>
                 temp.id = itemLn[1][i].lane_id;
                 temp.workflow_id = itemLn[1][i].workflow_id;
                 temp.parent_lane_id = itemLn[1][i].parent_lane_id;
-                temp.position = itemLn[1][i].position;
+                temp.pos = itemLn[1][i].position;
                 temp.name = itemLn[1][i].name;
                 temp.description = itemLn[1][i].description;
                 //pushes lane to lanes
@@ -183,8 +183,8 @@ module.exports.buildResponse = (col,wf,cd,ln) =>
             }
         })
     
-    //uses helpers/sorter/insertionCardSort to sort cards
-    cards = sorter.insertionCardSort(cards);
+    //uses helpers/sorter/insertionSortPos to sort cards
+    cards = sorter.insertionSortPos(cards);
 
     //inserts cards on its columns cards attribute
     for (let i = 0; i < cards.length; i = i + 1)
@@ -266,8 +266,8 @@ module.exports.buildResponse = (col,wf,cd,ln) =>
         //establish filtered kidcolumns
         kidcolumns = columns;
 
-        //uses helpers/sorter/insertionColumnSort to sort kid columns
-        kidcolumns = sorter.insertionColumnSort(kidcolumns);
+        //uses helpers/sorter/insertionSortPos to sort kid columns
+        kidcolumns = sorter.insertionSortPos(kidcolumns);
 
         //assigns kidcolumns on parent columns
         for (let i = 0; i < kidcolumns.length; i++)
@@ -285,9 +285,8 @@ module.exports.buildResponse = (col,wf,cd,ln) =>
     }
     while (kidcolumns.length > 0);
 
-    //uses helpers/sorter/insertionFinalColumnSort to sort final parent columns
-    columns = sorter.insertionFinalColumnSortPlus(columns);
-    columns = sorter.insertionFinalColumnSort(columns);
+    //uses helpers/sorter/insertionSortPos to sort lanes
+    columns = sorter.insertionSortPos(lanes);
 
     //assign lanes on workflows
     for (let i = 0; i < lanes.length; i = i + 1)
@@ -301,6 +300,10 @@ module.exports.buildResponse = (col,wf,cd,ln) =>
         }
     }
 
+    //uses helpers/sorter/insertionSortPos and Sec to sort final parent columns
+    columns = sorter.insertionSortPos(columns);
+    columns = sorter.insertionSortSec(columns);
+
     //assign columns on workflows
     for (let i = 0; i < columns.length; i = i + 1)
     {
@@ -313,8 +316,8 @@ module.exports.buildResponse = (col,wf,cd,ln) =>
         }
     }
 
-    //uses helpers/sorter/insertionWorkflowsSort to sort workflows
-    workflows = sorter.insertionWorkflowsSort(workflows);
+    //uses helpers/sorter/insertionSortPos to sort workflows
+    workflows = sorter.insertionSortPos(workflows);
 
     //creates object for response
     let myResponse = Object.create(res);

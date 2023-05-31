@@ -17,6 +17,8 @@ module.exports.createCard = (data) =>
     return req;
 }
 
+//function receives body
+//assigns values to request body structure
 module.exports.setMove = (data) => 
 {
     //creates request object
@@ -30,6 +32,8 @@ module.exports.setMove = (data) =>
     return req;
 }
 
+//function receives body
+//assigns values to request body structure
 module.exports.setNext = (data) => 
 {
     //creates request object
@@ -41,6 +45,8 @@ module.exports.setNext = (data) =>
     return req;
 }
 
+//function receives body
+//assigns values to request body structure
 module.exports.confUpdate = (data) => 
 {
     //creates request object

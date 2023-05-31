@@ -12,17 +12,22 @@ module.exports.updateCard = async (req, res) =>
 {
     //calls helpers/requestBuilder/confUpdate
     values = requestBuilder.confUpdate(req.body);
-    const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}`,
-    {
-        method: 'PATCH',
-        headers: {'apikey': req.apikey, 
-        'Content-Type': 'application/json'},
-        body: JSON.stringify(values)
-    });
-    //assigns request response
-    const data = await response.json();
-    //return response
-    res.json(data);
+    try {
+        const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}`,
+        {
+            method: 'PATCH',
+            headers: {'apikey': req.apikey, 
+            'Content-Type': 'application/json'},
+            body: JSON.stringify(values)
+        });
+        //assigns request response
+        const data = await response.json();
+        //return response
+        res.json(data);
+    }
+    catch(error) {
+        res.status(400).json('Error updating card:' + error);  
+    }
 }
 
 //receives post request
@@ -34,17 +39,22 @@ module.exports.moveCard = async (req, res) =>
 {
     //calls helpers/requestBuilder/setMove
     values = requestBuilder.setMove(req.body);
-    const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}`,
-    {
-        method: 'PATCH',
-        headers: {'apikey': req.apikey, 
-        'Content-Type': 'application/json'},
-        body: JSON.stringify(values)
-    });
-    //assigns request response
-    const data = await response.json();
-    //return response
-    res.json(data);
+    try {
+        const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}`,
+        {
+            method: 'PATCH',
+            headers: {'apikey': req.apikey, 
+            'Content-Type': 'application/json'},
+            body: JSON.stringify(values)
+        });
+        //assigns request response
+        const data = await response.json();
+        //return response
+        res.json(data);
+    }
+    catch(error) {
+        res.status(400).json('Error updating card:' + error);  
+    }
 }
 
 //redirects to patch request
@@ -55,15 +65,20 @@ module.exports.nextColumn = async (req, res) =>
 {
     //calls helpers/requestBuilder/setNext
     values = requestBuilder.setNext(req.body);
-    const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}`,
-    {
-        method: 'PATCH',
-        headers: {'apikey': req.apikey, 
-        'Content-Type': 'application/json'},
-        body: JSON.stringify(values)
-    });
-    //assigns request response
-    const data = await response.json();
-    //return response
-    res.json(data);
+    try {
+        const response = await fetch(`https://${req.domain}.kanbanize.com/api/v2/cards/${req.body.cardid}`,
+        {
+            method: 'PATCH',
+            headers: {'apikey': req.apikey, 
+            'Content-Type': 'application/json'},
+            body: JSON.stringify(values)
+        });
+        //assigns request response
+        const data = await response.json();
+        //return response
+        res.json(data);
+    }
+    catch(error) {
+        res.status(400).json('Error updating card:' + error);  
+    }
 }
