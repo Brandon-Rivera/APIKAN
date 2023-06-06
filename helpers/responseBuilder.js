@@ -332,3 +332,29 @@ module.exports.buildResponse = (col,wf,cd,ln) =>
     //returns response
     return myResponse;
 }
+
+//function to reestructure workflows, columns and cards
+module.exports.apikeyAdder = (data,apikey,domain) => 
+{
+    let found = true;
+    let newlink = "";
+    for (let i = 0; i < data.data.length; i++)
+    {
+        for (let j = 0; j < data.data[i].attachments.length; j++)
+        {
+            found = true;
+            for (let k = 0; k < domain.length; k++)
+            {
+                if (data.data[i].attachments[j].link[k+8] != domain[k])
+                {
+                    found = false;
+                }
+            }
+            if (found) {
+                newlink = data.data[i].attachments[j].link + "?apikey='" + apikey + "'";
+                data.data[i].attachments[j].link = newlink;
+            }
+        }
+    }
+    return data;
+}
