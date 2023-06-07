@@ -336,32 +336,41 @@ module.exports.buildResponse = (col,wf,cd,ln) =>
 //function to change image display to link
 module.exports.dispToLink = (data) => 
 {
+    //define variaables
     const imageHTML = "<figure class=\"image\">";
     let cnt = 0;
     let cnt2 = 0;
     let imageLink = "";
+    //for to iterate comments
     for (let i = 0; i < data.data.length; i++)
     {
+        //for to iterate characters on text
         for (let j = 0; j < data.data[i].text.length; j++)
         {
             cnt = 0;
+            //for to iterate characters on imageHTML
             for (let k = 0; k < imageHTML.length; k++)
             {
+                //if characters match add to cnt
                 if (data.data[i].text[j+k] == imageHTML[k])
                 {
                     cnt += 1;
                 }
+                //if character doesn't match, stops for cycle
                 else
                 {
                     k = imageHTML.length;
                 }
             }
+            //if all characters match, rebuilds text
             if (cnt == imageHTML.length)
             {
+                //for to add character before link
                 for (let k = 0; k < j; k++)
                 {
                     imageLink += data.data[i].text[k];
                 }
+                //add link header and reference
                 imageLink += '<a href = "';
                 while (data.data[i].text[j + 32 + cnt2] != '"')
                 {
@@ -369,10 +378,12 @@ module.exports.dispToLink = (data) =>
                     cnt2 += 1;
                 }
                 imageLink += '" target = "_blank">Image</a>';
+                //for to add text after link
                 for (let k = j + 32 + cnt2 + 2; k < data.data[i].text.length; k ++)
                 {
                     imageLink += data.data[i].text[k];
                 }
+                //update test on comment
                 data.data[i].text = imageLink;
                 cnt2 = 0;
                 imageLink = "";
