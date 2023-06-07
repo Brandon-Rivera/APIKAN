@@ -332,3 +332,51 @@ module.exports.buildResponse = (col,wf,cd,ln) =>
     //returns response
     return myResponse;
 }
+
+//function to change image display to link
+module.exports.dispToLink = (data) => 
+{
+    const imageHTML = "<figure class=\"image\">";
+    let cnt = 0;
+    let cnt2 = 0;
+    let imageLink = "";
+    for (let i = 0; i < data.data.length; i++)
+    {
+        for (let j = 0; j < data.data[i].text.length; j++)
+        {
+            cnt = 0;
+            for (let k = 0; k < imageHTML.length; k++)
+            {
+                if (data.data[i].text[j+k] == imageHTML[k])
+                {
+                    cnt += 1;
+                }
+                else
+                {
+                    k = imageHTML.length;
+                }
+            }
+            if (cnt == imageHTML.length)
+            {
+                for (let k = 0; k < j; k++)
+                {
+                    imageLink += data.data[i].text[k];
+                }
+                imageLink += '<a href = "';
+                while (data.data[i].text[j + 32 + cnt2] != '"')
+                {
+                    imageLink += data.data[i].text[j + 32 + cnt2]
+                    cnt2 += 1;
+                }
+                imageLink += '" target = "_blank">Image</a>';
+                for (let k = j + 32 + cnt2 + 2; k < data.data[i].text.length; k ++)
+                {
+                    imageLink += data.data[i].text[k];
+                }
+                data.data[i].text = imageLink;
+                cnt2 = 0;
+                imageLink = "";
+            }
+        }
+    }
+}
