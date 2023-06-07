@@ -1,7 +1,5 @@
 //include libraries
 const fetch = require("node-fetch");
-//helper routes
-const responseBuilder = require('../helpers/responseBuilder');
 
 //receives post request
 //redirects to post request
@@ -37,7 +35,6 @@ module.exports.doComment = async (req, res) =>
 //redirects to get request
 //requires body with cardid
 //requires header with supra-access-token
-//uses helpers/responseBuilder/apikeyAdder
 module.exports.getComment = async (req, res) => 
 {
     try {
@@ -48,8 +45,6 @@ module.exports.getComment = async (req, res) =>
         });
         //assigns request response
         const data = await response.json();
-        //calls helpers/responseBuilder/apikeyAdder
-        const data1 = responseBuilder.apikeyAdder(data, req.apikey, req.domain);
         //return response
         res.json(data);
     }

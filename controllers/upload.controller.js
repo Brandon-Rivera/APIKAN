@@ -26,7 +26,7 @@ module.exports.uploadImage = async (req, res) =>
     
     //upload image
     try {
-        const storageRef = ref(storage, req.body.cardid + "/" + String(Math.random()*100000000000000000) + req.files.toUpload.name);
+        const storageRef = ref(storage, req.domain + "/" + req.body.cardid + "/" + String(Math.random()*100000000000000000) + req.files.toUpload.name);
         await uploadBytes(storageRef, req.files.toUpload.data);
         const downloadURL = await getDownloadURL(storageRef);
         res.status(200).json(downloadURL);
