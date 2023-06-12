@@ -1,5 +1,5 @@
 
 //jwt key for encryption
 module.exports ={
-    key: '!!VacaKanban23$'
+    key: process.env.KEY || "!!VacaKanban23$"
 };

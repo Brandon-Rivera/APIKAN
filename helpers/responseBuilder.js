@@ -337,9 +337,12 @@ module.exports.buildResponse = (col,wf,cd,ln) =>
 module.exports.dispToLink = (data) => 
 {
     //define variaables
-    const imageHTML = "<figure class=\"image\">";
+    const imageHTML = "<figure class=\"image";
+    const imageHTML2 = "src";
     let cnt = 0;
     let cnt2 = 0;
+    let cnt3 = 0;
+    let fullText = "";
     let imageLink = "";
     //for to iterate comments
     for (let i = 0; i < data.data.length; i++)
@@ -365,28 +368,64 @@ module.exports.dispToLink = (data) =>
             //if all characters match, rebuilds text
             if (cnt == imageHTML.length)
             {
-                //for to add character before link
+                //for to add text previous to found image
                 for (let k = 0; k < j; k++)
                 {
-                    imageLink += data.data[i].text[k];
+                    fullText += data.data[i].text[k];
+                    cnt2 ++;
                 }
-                //add link header and reference
-                imageLink += '<a href = "';
-                while (data.data[i].text[j + 32 + cnt2] != '"')
+                //for to find the source link
+                while (cnt3 < imageHTML2.length) 
                 {
-                    imageLink += data.data[i].text[j + 32 + cnt2]
-                    cnt2 += 1;
+                    cnt3 = 0;
+                    if (cnt2 > j)
+                    {
+                        for (let k = 0; k < imageHTML2.length; k++)
+                        {
+                            if (data.data[i].text[cnt2 + k] == imageHTML2[k])
+                            {
+                                cnt3++;
+                            }
+                        }
+                    }
+                    cnt2++;
                 }
-                imageLink += '" target = "_blank">Image</a>';
-                //for to add text after link
-                for (let k = j + 32 + cnt2 + 2; k < data.data[i].text.length; k ++)
+                cnt3 = 3
+                //while to add link
+                while (data.data[i].text[cnt2 + cnt3] != ">")
                 {
-                    imageLink += data.data[i].text[k];
+                    imageLink += data.data[i].text[cnt2 + cnt3];
+                    cnt3 ++;
                 }
-                //update test on comment
-                data.data[i].text = imageLink;
-                cnt2 = 0;
+                cnt3 = 0;
+                //while to skip text until out of image
+                while (cnt3 < 2)
+                {
+                    cnt2++;
+                    if (data.data[i].text[cnt2] == ">")
+                    {
+                        cnt3 ++;
+                    }
+                }
+                //add image link reference
+                fullText += "<a href = ";
+                fullText += imageLink;
+                fullText += 'target = "_blank">Image</a>';
+                cnt2 ++;
+                //while to add rest of text
+                while (cnt2 < data.data[i].text.length)
+                {
+                    fullText += data.data[i].text[cnt2];
+                    cnt2++;
+                }
+                //assign new text
+                data.data[i].text = fullText;
+                //restore variables
                 imageLink = "";
+                fullText = "";
+                cnt = 0;
+                cnt2 = 0;
+                cnt3 = 0;
             }
         }
     }
